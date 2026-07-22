@@ -937,6 +937,17 @@ html.is-launching .page-enter {
   --behold-border-radius: 0px;
   --behold-row-gap: clamp(1rem, 2.5vw, 1.6rem);
 }
+.ig-feed {
+  margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+}
+.ig-feed behold-widget {
+  display: block;
+  width: 100%;
+  /* Behold widget theming custom properties */
+  --behold-gap: clamp(1rem, 2.5vw, 1.6rem);
+  --behold-border-radius: 0px;
+  --behold-row-gap: clamp(1rem, 2.5vw, 1.6rem);
+}
 .ig-card {
   background: var(--coal);
   border: 1px solid rgba(239, 231, 220, 0.1);
