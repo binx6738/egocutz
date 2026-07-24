@@ -1108,6 +1108,43 @@ html.is-launching .page-enter {
   color: var(--ash);
 }
 
+/* ---------- Waitlist ---------- */
+.waitlist {
+  padding: clamp(2.5rem, 7vh, 4.5rem) 0;
+}
+.waitlist__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.4rem, 4vw, 2.6rem);
+  background: var(--coal);
+  border: 1px solid rgba(239, 231, 220, 0.1);
+  border-left: 4px solid var(--blood);
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+}
+.waitlist__copy {
+  flex: 1 1 22rem;
+}
+.waitlist__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+  color: var(--bone);
+  margin: 0.4rem 0 0.8rem;
+}
+.waitlist__note {
+  max-width: 42ch;
+  color: var(--bone-dim);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.waitlist__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
 /* ---------- About ---------- */
 .about {
   padding-bottom: clamp(3.5rem, 9vh, 6.5rem);
