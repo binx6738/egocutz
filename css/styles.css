@@ -734,26 +734,26 @@ html.is-launching .page-enter {
     display: block;
     position: absolute;
     top: 0;
-    right: 4%;
-    width: 84%;
-    transform: rotate(-3deg);
+    right: 14%;
+    width: 80%;
+    transform: rotate(-5deg);
     z-index: 1;
   }
   .photo-card--chair {
     position: absolute;
-    top: 26%;
-    right: 34%;
-    width: 52%;
-    transform: rotate(2.6deg);
+    top: 30%;
+    right: 42%;
+    width: 50%;
+    transform: rotate(4.5deg);
     z-index: 2;
   }
   .photo-card--color {
     position: absolute;
-    bottom: 0;
-    right: 2%;
-    width: 50%;
+    bottom: -2%;
+    right: -2%;
+    width: 48%;
     margin: 0;
-    transform: rotate(-2.2deg);
+    transform: rotate(-3.5deg);
     z-index: 3;
   }
   .hero__title,
