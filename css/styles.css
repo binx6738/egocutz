@@ -730,31 +730,31 @@ html.is-launching .page-enter {
     display: block;
     z-index: 1;
   }
-  .photo-card--chair {
-    position: absolute;
-    top: 0;
-    right: 24%;
-    width: 76%;
-    transform: rotate(-4deg);
-    z-index: 1;
-  }
-  .photo-card--color {
-    position: absolute;
-    top: 36%;
-    right: 0;
-    width: 46%;
-    margin: 0;
-    transform: rotate(3deg);
-    z-index: 3;
-  }
   .photo-card--shop {
     display: block;
     position: absolute;
-    bottom: 0;
+    top: 0;
+    right: 4%;
+    width: 84%;
+    transform: rotate(-3deg);
+    z-index: 1;
+  }
+  .photo-card--chair {
+    position: absolute;
+    top: 26%;
     right: 34%;
-    width: 58%;
-    transform: rotate(-1.5deg);
+    width: 52%;
+    transform: rotate(2.6deg);
     z-index: 2;
+  }
+  .photo-card--color {
+    position: absolute;
+    bottom: 0;
+    right: 2%;
+    width: 50%;
+    margin: 0;
+    transform: rotate(-2.2deg);
+    z-index: 3;
   }
   .hero__title,
   .hero__foot,
