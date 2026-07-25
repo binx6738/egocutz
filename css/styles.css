@@ -730,31 +730,31 @@ html.is-launching .page-enter {
     display: block;
     z-index: 1;
   }
-  .photo-card--chair {
-    position: absolute;
-    top: 0;
-    right: 24%;
-    width: 76%;
-    transform: rotate(-4deg);
-    z-index: 1;
-  }
-  .photo-card--color {
-    position: absolute;
-    top: 36%;
-    right: 0;
-    width: 46%;
-    margin: 0;
-    transform: rotate(3deg);
-    z-index: 3;
-  }
   .photo-card--shop {
     display: block;
     position: absolute;
-    bottom: 0;
-    right: 34%;
-    width: 58%;
-    transform: rotate(-1.5deg);
+    top: 0;
+    right: 14%;
+    width: 80%;
+    transform: rotate(-5deg);
+    z-index: 1;
+  }
+  .photo-card--chair {
+    position: absolute;
+    top: 30%;
+    right: 42%;
+    width: 50%;
+    transform: rotate(4.5deg);
     z-index: 2;
+  }
+  .photo-card--color {
+    position: absolute;
+    bottom: -2%;
+    right: -2%;
+    width: 48%;
+    margin: 0;
+    transform: rotate(-3.5deg);
+    z-index: 3;
   }
   .hero__title,
   .hero__foot,
@@ -1255,9 +1255,10 @@ html.is-launching .page-enter {
   width: calc(100% + 2.8rem);
   margin: -1.5rem -1.4rem 0.2rem;
   max-width: none;
-  height: 150px;
+  height: auto;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
-  object-position: 50% 42%;
+  object-position: 50% 30%;
   filter: saturate(0.94);
   border-bottom: 3px solid var(--blood);
 }
