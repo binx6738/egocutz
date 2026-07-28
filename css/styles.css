@@ -1175,13 +1175,24 @@ html.is-launching .page-enter {
   text-wrap: pretty;
   margin: 0 0 1.1rem;
 }
+.donate__btn {
+  min-height: 44px;
+}
 .donate__qr {
-  margin: 0;
+  margin: 1.3rem 0 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
+  align-items: flex-start;
+  gap: 0.7rem;
   max-width: 22rem;
+}
+.donate__qr-label {
+  font-size: 0.9rem;
+  color: var(--bone-dim);
+  margin: 0;
+}
+.donate__qr-label strong {
+  color: var(--bone);
 }
 .donate__qr img {
   width: 100%;
