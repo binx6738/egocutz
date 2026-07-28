@@ -1185,12 +1185,10 @@ html.is-launching .page-enter {
 }
 .donate__qr img {
   width: 100%;
-  max-width: 230px;
-  aspect-ratio: 1;
+  max-width: 260px;
   height: auto;
-  object-fit: cover;
-  object-position: center 44%;
   background: var(--bone);
+  border-radius: 14px;
   border: 1px solid rgba(239, 231, 220, 0.14);
 }
 .donate__qr figcaption {

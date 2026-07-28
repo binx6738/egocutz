@@ -8,6 +8,7 @@
     "build": "node build.mjs"
   },
   "devDependencies": {
-    "serve": "^14.2.6"
+    "serve": "^14.2.6",
+    "sharp": "^0.35.3"
   }
 }
