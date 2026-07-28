@@ -1145,6 +1145,40 @@ html.is-launching .page-enter {
   gap: 0.8rem;
 }
 
+/* ---------- Donate ---------- */
+.donate {
+  margin-top: clamp(1.6rem, 4vw, 2.4rem);
+  padding: clamp(1.4rem, 4vw, 2rem);
+  background: var(--coal-2);
+  border: 1px solid rgba(239, 231, 220, 0.1);
+  border-left: 4px solid var(--blood);
+}
+.donate__eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  color: var(--blood);
+  margin: 0;
+}
+.donate__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  line-height: 1.05;
+  color: var(--bone);
+  margin: 0.35rem 0 0.7rem;
+}
+.donate__note {
+  max-width: 52ch;
+  color: var(--bone-dim);
+  line-height: 1.6;
+  text-wrap: pretty;
+  margin: 0 0 1.1rem;
+}
+.donate__btn {
+  min-height: 44px;
+}
+
 /* ---------- About ---------- */
 .about {
   padding-bottom: clamp(3.5rem, 9vh, 6.5rem);
