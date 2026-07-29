@@ -730,31 +730,31 @@ html.is-launching .page-enter {
     display: block;
     z-index: 1;
   }
-  .photo-card--chair {
-    position: absolute;
-    top: 0;
-    right: 24%;
-    width: 76%;
-    transform: rotate(-4deg);
-    z-index: 1;
-  }
-  .photo-card--color {
-    position: absolute;
-    top: 36%;
-    right: 0;
-    width: 46%;
-    margin: 0;
-    transform: rotate(3deg);
-    z-index: 3;
-  }
   .photo-card--shop {
     display: block;
     position: absolute;
-    bottom: 0;
-    right: 34%;
-    width: 58%;
-    transform: rotate(-1.5deg);
+    top: 0;
+    right: 14%;
+    width: 80%;
+    transform: rotate(-5deg);
+    z-index: 1;
+  }
+  .photo-card--chair {
+    position: absolute;
+    top: 30%;
+    right: 42%;
+    width: 50%;
+    transform: rotate(4.5deg);
     z-index: 2;
+  }
+  .photo-card--color {
+    position: absolute;
+    bottom: -2%;
+    right: -2%;
+    width: 48%;
+    margin: 0;
+    transform: rotate(-3.5deg);
+    z-index: 3;
   }
   .hero__title,
   .hero__foot,
@@ -924,6 +924,30 @@ html.is-launching .page-enter {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+/* Live Behold.so feed overrides the manual grid columns —
+   the widget renders its own responsive grid internally. */
+.ig-grid--live {
+  display: block;
+}
+.ig-grid--live behold-widget {
+  display: block;
+  width: 100%;
+  /* Behold widget theming custom properties */
+  --behold-gap: clamp(1rem, 2.5vw, 1.6rem);
+  --behold-border-radius: 0px;
+  --behold-row-gap: clamp(1rem, 2.5vw, 1.6rem);
+}
+.ig-feed {
+  margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+}
+.ig-feed behold-widget {
+  display: block;
+  width: 100%;
+  /* Behold widget theming custom properties */
+  --behold-gap: clamp(1rem, 2.5vw, 1.6rem);
+  --behold-border-radius: 0px;
+  --behold-row-gap: clamp(1rem, 2.5vw, 1.6rem);
+}
 .ig-card {
   background: var(--coal);
   border: 1px solid rgba(239, 231, 220, 0.1);
@@ -1084,6 +1108,111 @@ html.is-launching .page-enter {
   color: var(--ash);
 }
 
+/* ---------- Waitlist ---------- */
+.waitlist {
+  padding: clamp(2.5rem, 7vh, 4.5rem) 0;
+}
+.waitlist__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.4rem, 4vw, 2.6rem);
+  background: var(--coal);
+  border: 1px solid rgba(239, 231, 220, 0.1);
+  border-left: 4px solid var(--blood);
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+}
+.waitlist__copy {
+  flex: 1 1 22rem;
+}
+.waitlist__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+  color: var(--bone);
+  margin: 0.4rem 0 0.8rem;
+}
+.waitlist__note {
+  max-width: 42ch;
+  color: var(--bone-dim);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.waitlist__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+/* ---------- Donate ---------- */
+.donate {
+  margin-top: clamp(1.6rem, 4vw, 2.4rem);
+  padding: clamp(1.4rem, 4vw, 2rem);
+  background: var(--coal-2);
+  border: 1px solid rgba(239, 231, 220, 0.1);
+  border-left: 4px solid var(--blood);
+}
+.donate__eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  color: var(--blood);
+  margin: 0;
+}
+.donate__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  line-height: 1.05;
+  color: var(--bone);
+  margin: 0.35rem 0 0.7rem;
+}
+.donate__note {
+  max-width: 52ch;
+  color: var(--bone-dim);
+  line-height: 1.6;
+  text-wrap: pretty;
+  margin: 0 0 1.1rem;
+}
+.donate__btn {
+  min-height: 44px;
+}
+.donate__qr {
+  margin: 1.3rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  max-width: 22rem;
+}
+.donate__qr-label {
+  font-size: 0.9rem;
+  color: var(--bone-dim);
+  margin: 0;
+}
+.donate__qr-label strong {
+  color: var(--bone);
+}
+.donate__qr img {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  background: var(--bone);
+  border-radius: 14px;
+  border: 1px solid rgba(239, 231, 220, 0.14);
+}
+.donate__qr figcaption {
+  font-size: 0.9rem;
+  color: var(--bone-dim);
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: pretty;
+}
+.donate__qr figcaption strong {
+  color: var(--bone);
+}
+
 /* ---------- About ---------- */
 .about {
   padding-bottom: clamp(3.5rem, 9vh, 6.5rem);
@@ -1194,9 +1323,10 @@ html.is-launching .page-enter {
   width: calc(100% + 2.8rem);
   margin: -1.5rem -1.4rem 0.2rem;
   max-width: none;
-  height: 150px;
+  height: auto;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
-  object-position: 50% 42%;
+  object-position: 50% 30%;
   filter: saturate(0.94);
   border-bottom: 3px solid var(--blood);
 }
@@ -1294,6 +1424,14 @@ html.is-launching .page-enter {
 }
 .know__list strong {
   color: var(--bone);
+}
+.know__note {
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(239, 231, 220, 0.12);
+  font-size: 0.92rem;
+  color: var(--bone-dim);
+  text-wrap: pretty;
 }
 
 /* ---------- Footer ---------- */
