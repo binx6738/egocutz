@@ -97,6 +97,9 @@
     }
     .chip--call { background: rgba(111,191,115,0.14); border-color: rgba(111,191,115,0.4); color: #a9e5ac; }
     .chip--text { background: rgba(230,59,43,0.14); border-color: rgba(230,59,43,0.4); color: #ff9c90; }
+    .chip--done { margin-left: auto; background: rgba(111,191,115,0.16); border-color: rgba(111,191,115,0.5); color: #a9e5ac; cursor: pointer; }
+    .chip--done:disabled { opacity: 0.5; cursor: default; }
+    .card.is-removing { opacity: 0.45; transition: opacity 0.2s ease; }
     .empty { text-align: center; color: var(--bone-dim); padding: 3rem 1rem; }
     .refresh-note { text-align: center; color: var(--ash); font-size: 0.8rem; margin-top: 1.5rem; }
     .logout { background: none; border: none; color: var(--ash); font-size: 0.8rem; cursor: pointer; text-decoration: underline; }
@@ -178,9 +181,10 @@
         if (r.email) {
           actions += '<a class="chip" href="mailto:' + esc(r.email) + '">Email</a>';
         }
+        actions += '<button class="chip chip--done" data-done="' + esc(r.id) + '">Done ✓</button>';
         var contactLine = [r.phone, r.email].filter(Boolean).map(esc).join(" · ");
         return '' +
-          '<article class="card">' +
+          '<article class="card" data-card="' + esc(r.id) + '">' +
             '<div class="card__head">' +
               '<span class="card__name">' + esc(r.name) + '</span>' +
               '<span class="card__time">' + timeAgo(r.created_at) + '</span>' +
@@ -255,6 +259,45 @@
     });
 
     searchEl.addEventListener("input", applySearch);
+
+    function removeSignup(id, btn) {
+      var key = sessionStorage.getItem(KEY_STORE);
+      if (!key) return;
+      var person = allSignups.filter(function (r) { return String(r.id) === String(id); })[0];
+      var label = person && person.name ? person.name : "this person";
+      if (!window.confirm("Remove " + label + " from the waitlist? This can't be undone.")) return;
+
+      var card = document.querySelector('[data-card="' + id + '"]');
+      if (card) card.classList.add("is-removing");
+      if (btn) { btn.disabled = true; btn.textContent = "Removing…"; }
+
+      fetch("/api/waitlist-admin?key=" + encodeURIComponent(key) + "&id=" + encodeURIComponent(id), {
+        method: "DELETE"
+      }).then(function (res) {
+        return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+      }).then(function (r) {
+        if (r.ok && r.data.ok) {
+          allSignups = allSignups.filter(function (row) { return String(row.id) !== String(id); });
+          countEl.textContent = allSignups.length;
+          applySearch();
+        } else {
+          if (card) card.classList.remove("is-removing");
+          if (btn) { btn.disabled = false; btn.textContent = "Done ✓"; }
+          alert((r.data && r.data.error) || "Could not remove. Try again.");
+        }
+      }).catch(function () {
+        if (card) card.classList.remove("is-removing");
+        if (btn) { btn.disabled = false; btn.textContent = "Done ✓"; }
+        alert("Network error. Try again.");
+      });
+    }
+
+    listEl.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-done]") : null;
+      if (!btn) return;
+      e.preventDefault();
+      removeSignup(btn.getAttribute("data-done"), btn);
+    });
 
     // Auto-login if we already have a key this session
     (function () {
