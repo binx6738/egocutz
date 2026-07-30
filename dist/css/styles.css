@@ -1143,6 +1143,156 @@ html.is-launching .page-enter {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
+  flex: 1 1 26rem;
+}
+
+/* ---------- Waitlist form ---------- */
+.wl-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.wl-form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+@media (min-width: 34rem) {
+  .wl-form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.wl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.wl-field label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--bone-dim);
+}
+.wl-field__opt {
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.7;
+}
+.wl-field input,
+.wl-field select,
+.wl-field textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 16px; /* prevents iOS zoom on focus */
+  color: var(--bone);
+  background: var(--coal-2);
+  border: 1px solid rgba(239, 231, 220, 0.16);
+  border-radius: 10px;
+  padding: 0.7rem 0.8rem;
+  min-height: 44px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.wl-field textarea {
+  resize: vertical;
+  min-height: 66px;
+}
+.wl-field input::placeholder,
+.wl-field textarea::placeholder {
+  color: rgba(207, 197, 184, 0.5);
+}
+.wl-field input:focus,
+.wl-field select:focus,
+.wl-field textarea:focus {
+  outline: none;
+  border-color: var(--blood);
+  box-shadow: 0 0 0 3px rgba(230, 59, 43, 0.25);
+}
+.wl-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.wl-form__submit {
+  align-self: start;
+  min-height: 44px;
+  margin-top: 0.2rem;
+}
+.wl-form__submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+.wl-form__status {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  min-height: 1.2em;
+  margin: 0;
+}
+.wl-form__status.is-error {
+  color: #ff8b7e;
+}
+.wl-form__status.is-success {
+  color: #7fe0a6;
+}
+.wl-form__note {
+  font-size: 0.85rem;
+  color: var(--bone-dim);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- Visit map ---------- */
+.visit-card__map {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(239, 231, 220, 0.14);
+  line-height: 0;
+}
+.visit-card__map iframe {
+  width: 100%;
+  height: 220px;
+  border: 0;
+  display: block;
+  filter: grayscale(0.2) contrast(1.05);
+}
+
+/* ---------- Reviews ---------- */
+.reviews {
+  padding: clamp(2.5rem, 7vh, 4.5rem) 0;
+}
+.reviews__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.4rem, 4vw, 2.6rem);
+  background: var(--coal);
+  border: 1px solid rgba(239, 231, 220, 0.1);
+  border-left: 4px solid var(--blood);
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+}
+.reviews__copy {
+  flex: 1 1 22rem;
+}
+.reviews__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+  color: var(--bone);
+  margin: 0.4rem 0 0.8rem;
+}
+.reviews__note {
+  max-width: 46ch;
+  color: var(--bone-dim);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.reviews__btn {
+  min-height: 44px;
 }
 
 /* ---------- Donate ---------- */

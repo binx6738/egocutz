@@ -10,5 +10,8 @@
   "devDependencies": {
     "serve": "^14.2.6",
     "sharp": "^0.35.3"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0"
   }
 }

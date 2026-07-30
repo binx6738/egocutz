@@ -149,6 +149,83 @@
     loadEmbeds();
   }
 
+  /* ---------- Waitlist form ---------- */
+  var wlForm = document.getElementById("waitlistForm");
+  if (wlForm) {
+    var wlStatus = document.getElementById("wlStatus");
+    var wlSubmit = wlForm.querySelector(".wl-form__submit");
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    var setStatus = function (msg, kind) {
+      if (!wlStatus) return;
+      wlStatus.textContent = msg || "";
+      wlStatus.classList.remove("is-error", "is-success");
+      if (kind) wlStatus.classList.add("is-" + kind);
+    };
+
+    wlForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      var name = wlForm.name.value.trim();
+      var phone = wlForm.phone.value.trim();
+      var email = wlForm.email.value.trim();
+
+      if (name.length < 2) {
+        setStatus("Please enter your name.", "error");
+        wlForm.name.focus();
+        return;
+      }
+      if (!phone && !email) {
+        setStatus("Add a phone number or email so Zack can reach you.", "error");
+        wlForm.phone.focus();
+        return;
+      }
+      if (email && !EMAIL_RE.test(email)) {
+        setStatus("That email doesn't look right.", "error");
+        wlForm.email.focus();
+        return;
+      }
+
+      var payload = {
+        name: name,
+        phone: phone,
+        email: email,
+        service: wlForm.service.value,
+        note: wlForm.note.value.trim(),
+        company: wlForm.company.value
+      };
+
+      wlSubmit.disabled = true;
+      wlSubmit.textContent = "Sending…";
+      setStatus("");
+
+      fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+        })
+        .then(function (result) {
+          if (result.ok && result.data && result.data.ok) {
+            wlForm.reset();
+            setStatus("You're on the list! Zack will reach out when a spot opens.", "success");
+            wlSubmit.textContent = "Joined ✓";
+          } else {
+            setStatus((result.data && result.data.error) || "Something went wrong. Please call the shop.", "error");
+            wlSubmit.disabled = false;
+            wlSubmit.textContent = "Join the waitlist";
+          }
+        })
+        .catch(function () {
+          setStatus("Network error — please call the shop at 412-758-7116.", "error");
+          wlSubmit.disabled = false;
+          wlSubmit.textContent = "Join the waitlist";
+        });
+    });
+  }
+
   /* ---------- GSAP ---------- */
   if (typeof gsap === "undefined") return;
   if (/[?&]noanim/.test(location.search)) return; // audit/debug escape hatch
