@@ -13,8 +13,8 @@ function safeEqual(a, b) {
 }
 
 export default async function handler(req, res) {
-  if (req.method !== "GET") {
-    res.setHeader("Allow", "GET")
+  if (req.method !== "GET" && req.method !== "DELETE") {
+    res.setHeader("Allow", "GET, DELETE")
     return res.status(405).json({ ok: false, error: "Method not allowed" })
   }
 
@@ -31,6 +31,28 @@ export default async function handler(req, res) {
 
   if (!safeEqual(provided, secret)) {
     return res.status(401).json({ ok: false, error: "Wrong password." })
+  }
+
+  // Remove a completed signup
+  if (req.method === "DELETE") {
+    const id = (req.query && req.query.id) || ""
+    if (!/^[0-9a-fA-F-]{36}$/.test(String(id))) {
+      return res.status(400).json({ ok: false, error: "Invalid or missing id." })
+    }
+    try {
+      const deleted = await sql`
+        DELETE FROM waitlist_signups
+        WHERE id = ${id}
+        RETURNING id
+      `
+      if (!deleted.length) {
+        return res.status(404).json({ ok: false, error: "Signup not found." })
+      }
+      return res.status(200).json({ ok: true, deletedId: deleted[0].id })
+    } catch (error) {
+      console.log("[v0] waitlist-admin delete error:", error?.message)
+      return res.status(500).json({ ok: false, error: "Could not remove signup." })
+    }
   }
 
   try {
