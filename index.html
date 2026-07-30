@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- build: v99 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -7,6 +8,13 @@
   <meta name="description" content="Ego Cutz Barbershop — precision fades, locs, twists, color and freestyle designs by Zack Parker. Pennsylvania-licensed barbershop at 2310 Brownsville Rd, Pittsburgh (Carrick). Appointments required — book online.">
   <link rel="canonical" href="https://www.egocutz.com/">
   <meta name="theme-color" content="#100b0a">
+  <meta name="keywords" content="barber Carrick, barbershop Pittsburgh, fades Pittsburgh, locs Pittsburgh, twists, hair color barber, hair designs, Zack Parker barber, Brownsville Road barbershop, 15210 barber">
+  <meta name="author" content="Ego Cutz Barbershop">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="geo.region" content="US-PA">
+  <meta name="geo.placename" content="Pittsburgh, Carrick">
+  <meta name="geo.position" content="40.3888;-79.9854">
+  <meta name="ICBM" content="40.3888, -79.9854">
 
   <script>
   (function () {
@@ -37,6 +45,7 @@
 
   <!-- Open Graph / social -->
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Ego Cutz Barbershop">
   <meta property="og:title" content="Ego Cutz Barbershop — Cut the Ego, Build the Confidence™">
   <meta property="og:description" content="Precision fades, locs, twists, color &amp; freestyle designs in Carrick, Pittsburgh. By appointment with Zack Parker — book online.">
@@ -65,8 +74,19 @@
     "name": "Ego Cutz Barbershop",
     "slogan": "Cut the Ego, Build the Confidence",
     "url": "https://www.egocutz.com/",
+    "image": "https://www.egocutz.com/assets/img/share-card.jpg",
     "telephone": "+1-412-758-7116",
     "priceRange": "$20 - $150",
+    "paymentAccepted": "Cash, Debit Card, Credit Card",
+    "currenciesAccepted": "USD",
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Ego+Cutz+Barbershop,+2310+Brownsville+Rd,+Pittsburgh,+PA+15210",
+    "areaServed": [
+      { "@type": "Place", "name": "Carrick, Pittsburgh" },
+      { "@type": "Place", "name": "Brentwood" },
+      { "@type": "Place", "name": "Mount Oliver" },
+      { "@type": "Place", "name": "South Side, Pittsburgh" }
+    ],
+    "knowsAbout": ["Fades", "Locs", "Twists", "Hair Color", "Freestyle Designs", "Beard Grooming"],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "2310 Brownsville Road",
@@ -321,8 +341,51 @@
           </p>
         </div>
         <div class="waitlist__actions">
-          <a class="btn btn--blood" href="tel:+14127587116">Call the shop</a>
-          <a class="btn btn--ghost" href="https://www.instagram.com/ego_cutz89/" target="_blank" rel="noopener">DM on Instagram ↗</a>
+          <form class="wl-form" id="waitlistForm" novalidate>
+            <div class="wl-form__row">
+              <div class="wl-field">
+                <label for="wlName">Name</label>
+                <input id="wlName" name="name" type="text" autocomplete="name" required maxlength="120" placeholder="Your name">
+              </div>
+              <div class="wl-field">
+                <label for="wlPhone">Phone</label>
+                <input id="wlPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" placeholder="(412) 555-0123">
+              </div>
+            </div>
+            <div class="wl-form__row">
+              <div class="wl-field">
+                <label for="wlEmail">Email <span class="wl-field__opt">(optional)</span></label>
+                <input id="wlEmail" name="email" type="email" autocomplete="email" inputmode="email" maxlength="200" placeholder="you@email.com">
+              </div>
+              <div class="wl-field">
+                <label for="wlService">Service</label>
+                <select id="wlService" name="service">
+                  <option value="">Pick one (optional)</option>
+                  <option>Haircut / Fade</option>
+                  <option>Beard / Line-up</option>
+                  <option>Locs</option>
+                  <option>Twists</option>
+                  <option>Color</option>
+                  <option>Design</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+            </div>
+            <div class="wl-field">
+              <label for="wlNote">Anything else? <span class="wl-field__opt">(optional)</span></label>
+              <textarea id="wlNote" name="note" rows="2" maxlength="1000" placeholder="Preferred days/times, questions, etc."></textarea>
+            </div>
+            <p class="wl-hp" aria-hidden="true">
+              <label for="wlCompany">Company</label>
+              <input id="wlCompany" name="company" type="text" tabindex="-1" autocomplete="off">
+            </p>
+            <button class="btn btn--blood wl-form__submit" type="submit">Join the waitlist</button>
+            <p class="wl-form__status" id="wlStatus" role="status" aria-live="polite"></p>
+            <p class="wl-form__note">Zack will reach out when a spot opens. Prefer to talk now?
+              <a class="link-plain" href="tel:+14127587116">Call the shop</a> or
+              <a class="link-plain" href="https://www.instagram.com/ego_cutz89/" target="_blank" rel="noopener">DM on Instagram</a>.
+            </p>
+          </form>
         </div>
       </div>
     </section>
@@ -409,6 +472,12 @@
             <h3 class="visit-card__title">Address</h3>
             <p class="visit-card__big">2310 Brownsville Rd<br>Pittsburgh, PA 15210</p>
             <p class="visit-card__note">Carrick — street parking on Brownsville Road.</p>
+            <div class="visit-card__map">
+              <iframe
+                title="Map to Ego Cutz Barbershop, 2310 Brownsville Rd, Pittsburgh, PA 15210"
+                src="https://www.google.com/maps?q=2310+Brownsville+Rd,+Pittsburgh,+PA+15210&amp;output=embed"
+                width="620" height="240" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
             <a class="btn btn--ghost btn--sm" href="https://www.google.com/maps/dir/?api=1&amp;destination=Ego+Cutz+Barbershop,+2310+Brownsville+Rd,+Pittsburgh,+PA+15210" target="_blank" rel="noopener">Get directions ↗</a>
           </div>
 
@@ -453,6 +522,23 @@
         </aside>
       </div>
     </section>
+
+    <!-- ============ REVIEWS ============ -->
+    <section class="reviews" id="reviews" aria-labelledby="reviewsTitle">
+      <div class="wrap reviews__inner reveal">
+        <div class="reviews__copy">
+          <p class="eyebrow">Loved your cut?</p>
+          <h2 class="reviews__title" id="reviewsTitle">Leave Zack a review.</h2>
+          <p class="reviews__note">
+            A few kind words on Google help new clients in Carrick find the shop —
+            it&rsquo;s the biggest way you can support Ego Cutz. Takes about 30 seconds.
+          </p>
+        </div>
+        <a class="btn btn--blood reviews__btn"
+           href="https://search.google.com/local/writereview?cid=9593988069985356291"
+           target="_blank" rel="noopener">Review us on Google ↗</a>
+      </div>
+    </section>
   </main>
 
   <!-- ============ FOOTER ============ -->
@@ -472,6 +558,7 @@
         <a href="#services">Services</a>
         <a href="#about">Zack</a>
         <a href="#visit">Visit</a>
+        <a href="#reviews">Reviews</a>
         <a href="https://book.squareup.com/appointments/65172r2zh57n3q/location/LS283165ZVMPZ" target="_blank" rel="noopener">Book</a>
       </nav>
       <ul class="site-foot__social" aria-label="Social media">
