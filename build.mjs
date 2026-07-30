@@ -11,6 +11,7 @@ await mkdir(OUT, { recursive: true })
 
 // Copy static assets into the output directory
 await cp("index.html", `${OUT}/index.html`)
+await cp("admin.html", `${OUT}/admin.html`)
 
 for (const dir of ["css", "js", "assets"]) {
   if (existsSync(dir)) {
