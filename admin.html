@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#100b0a">
+  <title>Waitlist · Ego Cutz</title>
+  <style>
+    :root {
+      --ink: #100b0a;
+      --coal: #1c1412;
+      --coal-2: #241a17;
+      --bone: #efe7dc;
+      --bone-dim: #cfc5b8;
+      --blood: #e63b2b;
+      --blood-bright: #f1482f;
+      --ash: #5c534e;
+      --open: #6fbf73;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--ink);
+      color: var(--bone);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+    .wrap { max-width: 40rem; margin: 0 auto; padding: 1.5rem 1.1rem 4rem; }
+
+    header.top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .brand { font-weight: 800; letter-spacing: 0.02em; font-size: 1.05rem; }
+    .brand span { color: var(--blood); }
+    .count-pill {
+      background: var(--coal-2); border: 1px solid rgba(239,231,220,0.14);
+      border-radius: 999px; padding: 0.35rem 0.8rem; font-size: 0.85rem;
+      color: var(--bone-dim); white-space: nowrap;
+    }
+    .count-pill strong { color: var(--bone); }
+
+    /* Login */
+    .login { max-width: 22rem; margin: 12vh auto 0; text-align: center; }
+    .login h1 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .login p { color: var(--bone-dim); font-size: 0.95rem; margin-bottom: 1.4rem; }
+    .field { text-align: left; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--bone-dim); }
+    input[type="password"], input[type="search"] {
+      width: 100%; font-size: 16px; color: var(--bone);
+      background: var(--coal-2); border: 1px solid rgba(239,231,220,0.16);
+      border-radius: 10px; padding: 0.8rem; min-height: 48px;
+    }
+    input:focus { outline: none; border-color: var(--blood); box-shadow: 0 0 0 3px rgba(230,59,43,0.25); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 100%; min-height: 48px; border: none; border-radius: 10px;
+      background: var(--blood); color: #fff; font-size: 1rem; font-weight: 700;
+      cursor: pointer; text-decoration: none; transition: background 0.15s ease;
+    }
+    .btn:hover { background: var(--blood-bright); }
+    .btn:disabled { opacity: 0.6; cursor: default; }
+    .status { min-height: 1.3em; font-size: 0.9rem; margin-top: 0.9rem; }
+    .status.err { color: #ff8b7e; }
+
+    /* Toolbar */
+    .toolbar { display: flex; gap: 0.6rem; margin-bottom: 1.1rem; }
+    .toolbar input { flex: 1; }
+    .icon-btn {
+      min-width: 48px; min-height: 48px; border-radius: 10px;
+      background: var(--coal-2); border: 1px solid rgba(239,231,220,0.16);
+      color: var(--bone); font-size: 1.1rem; cursor: pointer;
+    }
+
+    /* Cards */
+    .list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .card {
+      background: var(--coal); border: 1px solid rgba(239,231,220,0.1);
+      border-left: 3px solid var(--blood); border-radius: 12px; padding: 1rem;
+    }
+    .card__head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.8rem; }
+    .card__name { font-size: 1.1rem; font-weight: 700; }
+    .card__time { font-size: 0.78rem; color: var(--ash); white-space: nowrap; }
+    .card__service {
+      display: inline-block; margin-top: 0.4rem; font-size: 0.8rem;
+      color: var(--bone-dim); background: var(--coal-2); border-radius: 999px; padding: 0.2rem 0.7rem;
+    }
+    .card__note { margin-top: 0.6rem; font-size: 0.92rem; color: var(--bone-dim); }
+    .card__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.85rem; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      min-height: 40px; padding: 0 0.85rem; border-radius: 999px;
+      font-size: 0.85rem; font-weight: 600; text-decoration: none;
+      background: var(--coal-2); color: var(--bone); border: 1px solid rgba(239,231,220,0.16);
+    }
+    .chip--call { background: rgba(111,191,115,0.14); border-color: rgba(111,191,115,0.4); color: #a9e5ac; }
+    .chip--text { background: rgba(230,59,43,0.14); border-color: rgba(230,59,43,0.4); color: #ff9c90; }
+    .empty { text-align: center; color: var(--bone-dim); padding: 3rem 1rem; }
+    .refresh-note { text-align: center; color: var(--ash); font-size: 0.8rem; margin-top: 1.5rem; }
+    .logout { background: none; border: none; color: var(--ash); font-size: 0.8rem; cursor: pointer; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <!-- LOGIN VIEW -->
+  <section class="wrap login" id="loginView">
+    <h1>Waitlist</h1>
+    <p>Enter your dashboard password to see who&rsquo;s waiting.</p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="pw">Password</label>
+        <input id="pw" type="password" autocomplete="current-password" inputmode="text" placeholder="••••••••" required>
+      </div>
+      <button class="btn" type="submit" id="loginBtn">View waitlist</button>
+      <p class="status" id="loginStatus" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- DASHBOARD VIEW -->
+  <main class="wrap" id="dashView" hidden>
+    <header class="top">
+      <div class="brand">EGO CUTZ <span>· Waitlist</span></div>
+      <div class="count-pill"><strong id="count">0</strong> waiting</div>
+    </header>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search name, phone, service…" autocomplete="off">
+      <button class="icon-btn" id="refreshBtn" title="Refresh" aria-label="Refresh">&#8635;</button>
+    </div>
+    <div class="list" id="list"></div>
+    <p class="refresh-note">Newest first · <button class="logout" id="logoutBtn">Log out</button></p>
+  </main>
+
+  <script>
+    var KEY_STORE = "egocutz_waitlist_key";
+    var allSignups = [];
+
+    var loginView = document.getElementById("loginView");
+    var dashView = document.getElementById("dashView");
+    var loginForm = document.getElementById("loginForm");
+    var loginStatus = document.getElementById("loginStatus");
+    var loginBtn = document.getElementById("loginBtn");
+    var listEl = document.getElementById("list");
+    var countEl = document.getElementById("count");
+    var searchEl = document.getElementById("search");
+
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+
+    function timeAgo(iso) {
+      var d = new Date(iso), now = new Date();
+      var diff = Math.floor((now - d) / 1000);
+      if (diff < 60) return "just now";
+      if (diff < 3600) return Math.floor(diff / 60) + "m ago";
+      if (diff < 86400) return Math.floor(diff / 3600) + "h ago";
+      var days = Math.floor(diff / 86400);
+      if (days < 7) return days + "d ago";
+      return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    }
+
+    function telHref(phone) { return "tel:" + String(phone).replace(/[^\d+]/g, ""); }
+    function smsHref(phone) { return "sms:" + String(phone).replace(/[^\d+]/g, ""); }
+
+    function render(rows) {
+      if (!rows.length) {
+        listEl.innerHTML = '<div class="empty">No signups yet. Share your link to fill the chair.</div>';
+        return;
+      }
+      listEl.innerHTML = rows.map(function (r) {
+        var actions = "";
+        if (r.phone) {
+          actions += '<a class="chip chip--call" href="' + telHref(r.phone) + '">Call</a>';
+          actions += '<a class="chip chip--text" href="' + smsHref(r.phone) + '">Text</a>';
+        }
+        if (r.email) {
+          actions += '<a class="chip" href="mailto:' + esc(r.email) + '">Email</a>';
+        }
+        var contactLine = [r.phone, r.email].filter(Boolean).map(esc).join(" · ");
+        return '' +
+          '<article class="card">' +
+            '<div class="card__head">' +
+              '<span class="card__name">' + esc(r.name) + '</span>' +
+              '<span class="card__time">' + timeAgo(r.created_at) + '</span>' +
+            '</div>' +
+            (contactLine ? '<div class="card__note">' + contactLine + '</div>' : '') +
+            (r.service ? '<span class="card__service">' + esc(r.service) + '</span>' : '') +
+            (r.note ? '<div class="card__note">&ldquo;' + esc(r.note) + '&rdquo;</div>' : '') +
+            (actions ? '<div class="card__actions">' + actions + '</div>' : '') +
+          '</article>';
+      }).join("");
+    }
+
+    function applySearch() {
+      var q = searchEl.value.trim().toLowerCase();
+      if (!q) return render(allSignups);
+      render(allSignups.filter(function (r) {
+        return [r.name, r.phone, r.email, r.service, r.note]
+          .filter(Boolean).join(" ").toLowerCase().indexOf(q) !== -1;
+      }));
+    }
+
+    function load(key) {
+      return fetch("/api/waitlist-admin?key=" + encodeURIComponent(key))
+        .then(function (res) {
+          return res.json().then(function (data) { return { ok: res.ok, status: res.status, data: data }; });
+        });
+    }
+
+    function showDashboard(rows) {
+      allSignups = rows || [];
+      countEl.textContent = allSignups.length;
+      loginView.hidden = true;
+      dashView.hidden = false;
+      applySearch();
+    }
+
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var key = document.getElementById("pw").value;
+      loginBtn.disabled = true;
+      loginBtn.textContent = "Checking…";
+      loginStatus.textContent = "";
+      loginStatus.className = "status";
+      load(key).then(function (r) {
+        if (r.ok && r.data.ok) {
+          try { sessionStorage.setItem(KEY_STORE, key); } catch (e2) {}
+          showDashboard(r.data.signups);
+        } else {
+          loginStatus.textContent = r.data.error || "Could not sign in.";
+          loginStatus.className = "status err";
+        }
+      }).catch(function () {
+        loginStatus.textContent = "Network error. Try again.";
+        loginStatus.className = "status err";
+      }).finally(function () {
+        loginBtn.disabled = false;
+        loginBtn.textContent = "View waitlist";
+      });
+    });
+
+    document.getElementById("refreshBtn").addEventListener("click", function () {
+      var key = sessionStorage.getItem(KEY_STORE);
+      if (!key) return;
+      load(key).then(function (r) { if (r.ok && r.data.ok) showDashboard(r.data.signups); });
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", function () {
+      try { sessionStorage.removeItem(KEY_STORE); } catch (e) {}
+      dashView.hidden = true;
+      loginView.hidden = false;
+      document.getElementById("pw").value = "";
+    });
+
+    searchEl.addEventListener("input", applySearch);
+
+    // Auto-login if we already have a key this session
+    (function () {
+      var saved = null;
+      try { saved = sessionStorage.getItem(KEY_STORE); } catch (e) {}
+      if (saved) {
+        load(saved).then(function (r) {
+          if (r.ok && r.data.ok) showDashboard(r.data.signups);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
