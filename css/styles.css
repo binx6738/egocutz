@@ -1265,15 +1265,17 @@ html.is-launching .page-enter {
   padding: clamp(2.5rem, 7vh, 4.5rem) 0;
 }
 .reviews__inner {
+  background: var(--coal);
+  border: 1px solid rgba(239, 231, 220, 0.1);
+  border-left: 4px solid var(--blood);
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+}
+.reviews__head {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: clamp(1.4rem, 4vw, 2.6rem);
-  background: var(--coal);
-  border: 1px solid rgba(239, 231, 220, 0.1);
-  border-left: 4px solid var(--blood);
-  padding: clamp(1.6rem, 4vw, 2.6rem);
 }
 .reviews__copy {
   flex: 1 1 22rem;
@@ -1293,6 +1295,18 @@ html.is-launching .page-enter {
 }
 .reviews__btn {
   min-height: 44px;
+}
+.reviews__widget {
+  margin-top: clamp(1.6rem, 4vw, 2.4rem);
+}
+.reviews__placeholder {
+  padding: clamp(1.6rem, 5vw, 2.4rem);
+  border: 1px dashed rgba(239, 231, 220, 0.22);
+  border-radius: 10px;
+  text-align: center;
+  color: var(--bone-dim);
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* ---------- Donate ---------- */
